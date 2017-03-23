@@ -28,7 +28,7 @@ const constants = {
 	},
 	data: {
 		COMMON_PASSWORDS: require('../data/common-passwords.json'),
-		ENGLISH_WORDS:    require('../data/english-words.json'),
+		ENGLISH_WORDS:    require('../data/english-words.json')
 	}
 }
 

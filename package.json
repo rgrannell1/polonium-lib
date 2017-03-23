@@ -6,10 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ryan Grannell",
+  "devDependencies": {
+    "eslint": "*",
+    "babel-eslint": "*"
+  },
   "dependencies": {
     "big-integer": "^1.6.17",
     "is": "github:rgrannell1/is"
-  }
+  },
+  "license": "MIT"
 }

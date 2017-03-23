@@ -79,7 +79,7 @@ const polonium = config => {
 polonium.validate = config => {
 
 	return new Promise(res => res( ))
-	.then(( ) =>{
+	.then(( ) => {
 		polonium.validate.config(config)
 	})
 	.then(( ) => {
@@ -127,7 +127,7 @@ polonium.validate.security = config => {
 		throw new Error(`${constants.errorCodes.COMMON_PASSWORD}: The provided master-password is too common (ranked #${passwordRank} of 10,000 most common passwords)`)
 	}
 
-	if (constants.data.ENGLISH_WORDS.indexOf(config.password.toLowerCase( )) != -1) {
+	if (constants.data.ENGLISH_WORDS.indexOf(config.password.toLowerCase( )) !== -1) {
 		throw new Error(`${constants.errorCodes.SINGLE_ENGLISH_WORD}: The master password is too easy to guess, as it is a single English word.`)
 	}
 
