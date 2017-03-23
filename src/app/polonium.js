@@ -90,6 +90,17 @@ polonium.validate = config => {
 
 polonium.validate.config = config => {
 
+	const expectedProperties = ['salt', 'len', 'rounds', 'digest', 'password']
+
+	expectedProperties.forEach(expected => {
+
+		if (!config.hasOwnProperty(expected)) {
+			throw new Error(`${constants.errorCodes.MISSING_PARAMETER}: a required configuration property - ${expected} - was not supplied.`)
+		}
+
+	})
+
+
 	Object.keys(config).forEach(parameter => {
 
 		if (validators.hasOwnProperty(parameter)) {
@@ -117,7 +128,7 @@ polonium.validate.security = config => {
 	}
 
 	if (constants.data.ENGLISH_WORDS.indexOf(config.password.toLowerCase( )) != -1) {
-		throw new Error(`${constants.errorCodes.SINGLE_ENGLISH_WORD}: The master password is too easy to guess, as it is a single English word`)
+		throw new Error(`${constants.errorCodes.SINGLE_ENGLISH_WORD}: The master password is too easy to guess, as it is a single English word.`)
 	}
 
 	if (config.password.length < constants.limits.MINIMUM_PASSWORD_LENGTH) {

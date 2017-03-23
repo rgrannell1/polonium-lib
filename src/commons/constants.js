@@ -23,7 +23,8 @@ const constants = {
 		COMMON_PASSWORD:           'PL_000',
 		PASSWORD_TOO_SHORT:        'PL_001',
 		TOO_FEW_STRETCHING_ROUNDS: 'PL_002',
-		SINGLE_ENGLISH_WORD:       'PL_003'
+		SINGLE_ENGLISH_WORD:       'PL_003',
+		MISSING_PARAMETER:         'PL_004'
 	},
 	data: {
 		COMMON_PASSWORDS: require('../data/common-passwords.json'),
