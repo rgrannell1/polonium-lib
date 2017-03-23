@@ -90,6 +90,10 @@ polonium.validate = config => {
 
 polonium.validate.config = config => {
 
+	if (!is.object(config)) {
+		throw new Error(`${constants.errorCodes.MISSING_PARAMETER}: no configuration was supplied.`)
+	}
+
 	const expectedProperties = ['salt', 'len', 'rounds', 'digest', 'password']
 
 	expectedProperties.forEach(expected => {

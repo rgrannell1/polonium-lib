@@ -11,7 +11,7 @@ const constants = {
 	limits: {
 		LOW_ENTROPY:             80,
 		MINIMUM_PASSWORD_LENGTH: 12,
-		MINIMUM_ROUNDS:          1e6
+		MINIMUM_ROUNDS:          1e5
 	},
 	bases: {
 		HEXIDECIMAL: 16
