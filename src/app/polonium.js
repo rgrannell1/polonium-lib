@@ -145,23 +145,4 @@ polonium.validate.security = config => {
 
 
 
-
-polonium({
-	salt:   'xxx',
-	len:    10,
-	rounds: 10000,
-	digest: 'sha1',
-	password: 'australopithecus'
-})
-.then(foo => {
-
-	console.log( foo )
-
-})
-.catch(err => {
-
-	console.error(err)
-
-})
-
 module.exports = polonium

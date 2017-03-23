@@ -14,11 +14,11 @@ const constants = require('../commons/constants')
 
 
 
-const convertHexToBase62 = (charset, hex) => {
+const convertCharset = (charset, inputBase, str) => {
 
 	const digits = [ ]
 	const chars  = charset.split('')
-	var num      = bigInt(hex, constants.bases.HEXIDECIMAL)
+	var num      = bigInt(str, inputBase)
 
 	while (num.gt(0)) {
 
@@ -64,24 +64,13 @@ slavePassword.derive = config => {
 
 slavePassword.format = (config, password) => {
 
-	return convertHexToBase62(
+	return convertCharset(
 		constants.charsets.ALPHANUMERIC,
+		constants.bases.HEXIDECIMAL,
 		password.toString('hex')
 	)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
