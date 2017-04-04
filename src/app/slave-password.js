@@ -68,7 +68,7 @@ slavePassword.format = (config, password) => {
 		constants.charsets.ALPHANUMERIC,
 		constants.bases.HEXIDECIMAL,
 		password.toString('hex')
-	)
+	).slice(0, config.len)
 
 }
 
