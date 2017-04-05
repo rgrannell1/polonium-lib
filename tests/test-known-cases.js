@@ -52,11 +52,11 @@ const cases = [
 		config: {
 			salt:     '377049113462092',
 			password: '752261007374591',
-			len:       20,
+			len:       10,
 			rounds:    1000000,
 			digest:    'sha1'
 		},
-		derivedPassword: 'DdrxvaaGFCK4duM9oIiI'
+		derivedPassword: 'cTyLF7OXNC'
 	}
 ]
 
