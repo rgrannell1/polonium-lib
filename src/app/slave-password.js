@@ -51,7 +51,7 @@ slavePassword.derive = config => {
 			config.password,
 			config.salt,
 			config.rounds,
-			config.len,
+			6 * config.len,
 			config.digest,
 			(err, key) => {
 				return err ? rej(err) : res(key)

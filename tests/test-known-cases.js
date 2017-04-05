@@ -10,13 +10,13 @@ const pl     = require('../index')
 const cases = [
 	{
 		config: {
-			salt:     'HtW3itBBHsoWSEyX4apc',
-			password: 'B06hT2hN9xUKkwxP6oFf',
+			salt:     'foo',
+			password: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
 			len:       20,
 			rounds:    1000000,
 			digest:    'sha1'
 		},
-		derivedPassword: 'WFhD5Krxk0KiVUtkLoLU'
+		derivedPassword: '39EoWqNJ7xcoXkjXe4ML'
 	}
 ]
 
@@ -24,7 +24,9 @@ const cases = [
 
 
 
-describe('known test cases', ( ) => {
+describe('known test cases', function ( ) {
+
+	this.timeout(1e6)
 
 	cases.forEach(testCase => {
 

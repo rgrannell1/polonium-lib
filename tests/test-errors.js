@@ -7,7 +7,9 @@ const pl     = require('../index')
 
 
 
-describe('error conditions', ( ) => {
+describe('error conditions', function ( ) {
+
+	this.timeout(10 * 60 * 1000);
 
 	const cases = [
 		{
