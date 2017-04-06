@@ -16,7 +16,6 @@
     "big-integer": "^1.6.17",
     "chai": "^3.5.0",
     "is": "github:rgrannell1/is",
-    "locus": "^2.0.1",
     "mocha": "^3.2.0"
   },
   "license": "MIT"
