@@ -78,7 +78,7 @@ const polonium = config => {
 
 polonium.validate = config => {
 
-	return new Promise(res => res( ))
+	return Promise.resolve( )
 	.then(( ) => {
 		polonium.validate.config(config)
 	})

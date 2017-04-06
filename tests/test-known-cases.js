@@ -7,6 +7,7 @@ const pl     = require('../index')
 
 
 
+
 const cases = [
 	{
 		config: {
