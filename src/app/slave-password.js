@@ -5,7 +5,7 @@
 
 
 
-const crypto    = require('crypto')
+const {pbkdf2}  = require('pbkdf2')
 const bigInt    = require("big-integer")
 
 const constants = require('../commons/constants')
@@ -47,7 +47,7 @@ slavePassword.derive = config => {
 
 	return new Promise((res, rej) => {
 
-		crypto.pbkdf2(
+		pbkdf2(
 			config.password,
 			config.salt,
 			config.rounds,
