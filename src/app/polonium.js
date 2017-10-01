@@ -7,14 +7,22 @@
 
 const is = require('is')
 
-const slavePassword = require('../app/slave-password')
-const constants     = require('../commons/constants')
+const slavePasswordSelector = require('../app/slave-password')
+const constants             = require('../commons/constants')
 
 
 
 
 
 const validators = { }
+
+/*
+	@param {string} salt.
+	@throws errors describing why the supplied value is incorrect.
+
+	Ensure that a valid PBKDF2 salt-value was supplied.
+
+*/
 
 validators.salt = salt => {
 
@@ -28,6 +36,14 @@ validators.salt = salt => {
 
 }
 
+/*
+	@param {number} len.
+	@throws errors describing why the supplied value is incorrect.
+
+	Ensure that a valid PBKDF2 output length was supplied.
+
+*/
+
 validators.len = len => {
 
 	if (!is.number(len)) {
@@ -35,6 +51,14 @@ validators.len = len => {
 	}
 
 }
+
+/*
+	@param {number} rounds.
+	@throws errors describing why the supplied value is incorrect.
+
+	Ensure that a valid number of rounds of PBKDF2 was specified.
+
+*/
 
 validators.rounds = rounds => {
 
@@ -44,6 +68,14 @@ validators.rounds = rounds => {
 
 }
 
+/*
+	@param {string} digest.
+	@throws errors describing why the supplied value is incorrect.
+
+	Validate the digest algorithm supplied to PBKDF2.
+
+*/
+
 validators.digest = digest => {
 
 	if (!is.string(digest)) {
@@ -51,6 +83,14 @@ validators.digest = digest => {
 	}
 
 }
+
+/*
+	@param {string} password.
+	@throws errors describing why the supplied value is incorrect.
+
+	Validate the password supplied to PBKDF2.
+
+*/
 
 validators.password = password => {
 
@@ -64,29 +104,50 @@ validators.password = password => {
 
 
 
+/*
+	@param {object} config.
+
+*/
+
 const polonium = config => {
 
 	return polonium.validate(config)
 		.then(( ) => {
-			return slavePassword.derive(config)
-		})
-		.then(password => {
-			return slavePassword.format(config, password)
+
+			const slavePassword = slavePasswordSelector({
+				local:   config.local,
+				browser: config.browser
+			})
+
+			return slavePassword(config)
+
 		})
 
 }
+
+/*
+	@param {object} config. configuration supplied to polonium.
+
+*/
 
 polonium.validate = config => {
 
 	return Promise.resolve( )
-	.then(( ) => {
-		polonium.validate.config(config)
-	})
-	.then(( ) => {
-		polonium.validate.security(config)
-	})
+		.then(( ) => {
+			polonium.validate.config(config)
+		})
+		.then(( ) => {
+			polonium.validate.security(config)
+		})
 
 }
+
+/*
+	@param {object} config. configuration supplied to polonium.
+
+	Validate non-security related details about the supplied configuration.
+
+*/
 
 polonium.validate.config = config => {
 
@@ -121,6 +182,18 @@ polonium.validate.config = config => {
 
 
 }
+
+/*
+	@param {object} config.
+
+	Validate that the supplied polonium configuration is not obviously insecure.
+
+	@throws throws an error when:
+	    - a password is too frequently used.
+	    - the password is a single English word.
+	    - the password is too short.
+	    - too few rounds of PBKDF2 were requested.
+*/
 
 polonium.validate.security = config => {
 
