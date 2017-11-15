@@ -119,6 +119,9 @@ const polonium = config => {
 				browser: config.browser
 			})
 
+			delete config.local
+			delete config.browser
+
 			return slavePassword(config)
 
 		})
