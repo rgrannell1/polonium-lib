@@ -174,7 +174,7 @@ polonium.validate.config = config => {
 
 		} else {
 
-			throw new Error(constants.errors.UNKNOWN_PARAMETER)
+			throw new Error(constants.errors.UNKNOWN_PARAMETER + ' ' + parameter)
 
 		}
 
