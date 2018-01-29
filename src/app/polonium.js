@@ -7,8 +7,8 @@
 
 const is = require('is')
 
-const slavePasswordSelector = require('../app/slave-password')
-const constants             = require('../commons/constants')
+const slavePassword = require('../app/slave-password')
+const constants = require('../commons/constants')
 
 
 
@@ -110,22 +110,8 @@ validators.password = password => {
 */
 
 const polonium = config => {
-
 	return polonium.validate(config)
-		.then(( ) => {
-
-			const slavePassword = slavePasswordSelector({
-				local:   true,
-				browser: config.browser
-			})
-
-			delete config.local
-			delete config.browser
-
-			return slavePassword(config)
-
-		})
-
+		.then(( ) => slavePassword(config))
 }
 
 /*

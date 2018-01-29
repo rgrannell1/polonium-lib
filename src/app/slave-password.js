@@ -5,7 +5,7 @@
 
 
 
-const {pbkdf2}  = require('pbkdf2')
+const crypto    = require('crypto')
 const bigInt    = require("big-integer")
 
 const constants = require('../commons/constants')
@@ -37,17 +37,16 @@ const convertCharset = (charset, inputBase, str) => {
 
 
 
-const slavePassword = { }
+const slavePassword = {
+	browser: { },
+	local:   { }
+}
 
+slavePassword.local = config => {
 
+	const derivePassword = new Promise((res, rej) => {
 
-
-
-slavePassword.derive = config => {
-
-	return new Promise((res, rej) => {
-
-		pbkdf2(
+		crypto.pbkdf2(
 			config.password,
 			config.salt,
 			config.rounds,
@@ -60,15 +59,36 @@ slavePassword.derive = config => {
 
 	})
 
+	return derivePassword
+		.then(password => {
+
+			return convertCharset(
+				constants.charsets.ALPHANUMERIC,
+				constants.bases.HEXIDECIMAL,
+				password.toString('hex')
+			).slice(0, config.len)
+
+		})
+
 }
 
-slavePassword.format = (config, password) => {
 
-	return convertCharset(
-		constants.charsets.ALPHANUMERIC,
-		constants.bases.HEXIDECIMAL,
-		password.toString('hex')
-	).slice(0, config.len)
+
+
+
+
+slavePassword.browser = config => {
+
+	const derivePassword = window.crypto.subtle.deriveBits({
+		name: 'PBKDF2',
+		salt: '',
+		iterations: config.rounds,
+		hash: {
+			name: 'SHA-1'
+		}
+	})
+
+	return derivePassword
 
 }
 
@@ -76,4 +96,18 @@ slavePassword.format = (config, password) => {
 
 
 
-module.exports = slavePassword
+const passwordSelector = config => {
+
+	if (config.local) {
+		return slavePassword.local
+	} else if (config.browser) {
+		return slavePassword.browser
+	} else if (typeof window === 'undefined') {
+		return slavePassword.local
+	} else {
+		return slavePassword.local
+	}
+
+}
+
+module.exports = slavePassword.local
