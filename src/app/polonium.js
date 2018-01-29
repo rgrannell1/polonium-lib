@@ -115,7 +115,7 @@ const polonium = config => {
 		.then(( ) => {
 
 			const slavePassword = slavePasswordSelector({
-				local:   config.local,
+				local:   true,
 				browser: config.browser
 			})
 
