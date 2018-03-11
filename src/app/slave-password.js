@@ -92,22 +92,4 @@ slavePassword.browser = config => {
 
 }
 
-
-
-
-
-const passwordSelector = config => {
-
-	if (config.local) {
-		return slavePassword.local
-	} else if (config.browser) {
-		return slavePassword.browser
-	} else if (typeof window === 'undefined') {
-		return slavePassword.local
-	} else {
-		return slavePassword.local
-	}
-
-}
-
 module.exports = slavePassword.local
