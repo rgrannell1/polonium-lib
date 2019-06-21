@@ -9,10 +9,10 @@ const constants = require('../commons/constants')
 const validators = { }
 
 /*
-	@param {string} salt.
-	@throws errors describing why the supplied value is incorrect.
+  @param {string} salt.
+  @throws errors describing why the supplied value is incorrect.
 
-	Ensure that a valid PBKDF2 salt-value was supplied.
+  Ensure that a valid PBKDF2 salt-value was supplied.
 
 */
 
@@ -27,10 +27,10 @@ validators.salt = salt => {
 }
 
 /*
-	@param {number} len.
-	@throws errors describing why the supplied value is incorrect.
+  @param {number} len.
+  @throws errors describing why the supplied value is incorrect.
 
-	Ensure that a valid PBKDF2 output length was supplied.
+  Ensure that a valid PBKDF2 output length was supplied.
 
 */
 
@@ -41,10 +41,10 @@ validators.len = len => {
 }
 
 /*
-	@param {number} rounds.
-	@throws errors describing why the supplied value is incorrect.
+  @param {number} rounds.
+  @throws errors describing why the supplied value is incorrect.
 
-	Ensure that a valid number of rounds of PBKDF2 was specified.
+  Ensure that a valid number of rounds of PBKDF2 was specified.
 
 */
 
@@ -55,10 +55,10 @@ validators.rounds = rounds => {
 }
 
 /*
-	@param {string} digest.
-	@throws errors describing why the supplied value is incorrect.
+  @param {string} digest.
+  @throws errors describing why the supplied value is incorrect.
 
-	Validate the digest algorithm supplied to PBKDF2.
+  Validate the digest algorithm supplied to PBKDF2.
 
 */
 
@@ -69,10 +69,10 @@ validators.digest = digest => {
 }
 
 /*
-	@param {string} password.
-	@throws errors describing why the supplied value is incorrect.
+  @param {string} password.
+  @throws errors describing why the supplied value is incorrect.
 
-	Validate the password supplied to PBKDF2.
+  Validate the password supplied to PBKDF2.
 
 */
 
@@ -83,7 +83,7 @@ validators.password = password => {
 }
 
 /*
-	@param {object} config.
+  @param {object} config.
 
 */
 
@@ -93,7 +93,7 @@ const polonium = config => {
 }
 
 /*
-	@param {object} config. configuration supplied to polonium.
+  @param {object} config. configuration supplied to polonium.
 
 */
 
@@ -108,9 +108,9 @@ polonium.validate = config => {
 }
 
 /*
-	@param {object} config. configuration supplied to polonium.
+  @param {object} config. configuration supplied to polonium.
 
-	Validate non-security related details about the supplied configuration.
+  Validate non-security related details about the supplied configuration.
 
 */
 
@@ -137,15 +137,15 @@ polonium.validate.config = config => {
 }
 
 /*
-	@param {object} config.
+  @param {object} config.
 
-	Validate that the supplied polonium configuration is not obviously insecure.
+  Validate that the supplied polonium configuration is not obviously insecure.
 
-	@throws throws an error when:
-	    - a password is too frequently used.
-	    - the password is a single English word.
-	    - the password is too short.
-	    - too few rounds of PBKDF2 were requested.
+  @throws throws an error when:
+      - a password is too frequently used.
+      - the password is a single English word.
+      - the password is too short.
+      - too few rounds of PBKDF2 were requested.
 */
 
 polonium.validate.security = config => {

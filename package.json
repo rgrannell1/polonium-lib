@@ -8,8 +8,6 @@
   },
   "author": "Ryan Grannell",
   "devDependencies": {
-    "babel-eslint": "*",
-    "eslint": "*",
     "locus": "^2.0.1",
     "standard": "^12.0.1"
   },
@@ -18,6 +16,8 @@
     "chai": "^3.5.0",
     "is": "github:rgrannell1/is",
     "mocha": "^3.2.0",
+    "babel-eslint": "*",
+    "eslint": "*",
     "pbkdf2": "^3.0.9"
   },
   "license": "MIT"

@@ -27,7 +27,7 @@ const slavePassword = {
 }
 
 slavePassword.local = config => {
-  const derivePassword = new Promise((res, rej) => {
+  const derivePassword = new Promise((resolve, reject) => {
     crypto.pbkdf2(
       config.password,
       config.salt,
@@ -35,7 +35,7 @@ slavePassword.local = config => {
       6 * config.len,
       config.digest,
       (err, key) => {
-        return err ? rej(err) : res(key)
+        return err ? reject(err) : resolve(key)
       }
     )
   })
