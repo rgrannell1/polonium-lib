@@ -16,8 +16,6 @@
     "chai": "^3.5.0",
     "is": "github:rgrannell1/is",
     "mocha": "^3.2.0",
-    "babel-eslint": "*",
-    "eslint": "*",
     "pbkdf2": "^3.0.9"
   },
   "license": "MIT"
